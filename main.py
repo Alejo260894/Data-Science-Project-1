@@ -64,7 +64,7 @@ def userdata(user_id):
 
 def UserForGenre(genero: str):
     try:
-        df_año_horas = pd.read_parquet('arch_parquet/df_anio_horas.parquet')
+        df_año_horas = pd.read_parquet('arch_parquet\\df_anio_horas.parquet')
         df_año_horas = df_año_horas[['genres','user_id', 'año_lanzamiento','playtime_horas']]
         df_filtrado = df_año_horas[df_año_horas['genres'] == genero]
         playtime_sum = df_filtrado.groupby(['user_id', 'año_lanzamiento'])['playtime_horas'].sum() 
