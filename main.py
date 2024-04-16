@@ -76,7 +76,7 @@ def UserForGenre(genero: str):
 @app.get('/best_developer_year')
 
 def get_best_developer(año: int):
-    review_games = pd.read_parquet('arch_parquet\df_reviews.parquet')
+    review_games = pd.read_parquet('arch_parquet/df_reviews.parquet')
     review_games = review_games[['developer','año_lanzamiento','reviews_recommend', 'sentiment_analysis']]
     df_filtered = review_games[(review_games['año_lanzamiento'] == año) & (review_games['reviews_recommend'] == True) & (review_games['sentiment_analysis'] >= 1)]
     positive_reviws_count = df_filtered['developer'].value_counts()
