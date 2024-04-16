@@ -126,9 +126,9 @@ def developer_reviews_analysis(developer:str):
 
 def recomendacion_usuario(user_id:str):
 
-    df_games = pd.read_csv('Datasets_limpio\\steam_games.csv', encoding='utf-8')
-    df_ml = pd.read_csv('Datasets_limpio\\df_ml_sa.csv', encoding='utf-8')
-    df_comparacion = pd.read_csv('Datasets_limpio\\df_comparacion.csv', encoding='utf-8')
+    df_games = pd.read_csv('Datasets_limpio/steam_games.csv', encoding='utf-8')
+    df_ml = pd.read_csv('Datasets_limpio/df_ml_sa.csv', encoding='utf-8')
+    df_comparacion = pd.read_csv('Datasets_limpio/df_comparacion.csv', encoding='utf-8')
 
     n_clusters = 2
     features = df_ml[['genres','item_id','title','recommend','sentiment_analysis']]
