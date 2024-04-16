@@ -128,7 +128,7 @@ def developer_reviews_analysis(developer:str):
 
 def recomendacion_usuario(user_id:str):
 
-    df_items = pd.read_csv('Datasets_limpio\\user_items.csv', encoding='utf-8')
+    df_games = pd.read_csv('Datasets_limpio\\steam_games.csv', encoding='utf-8')
     df_ml = pd.read_csv('Datasets_limpio\\df_ml_sa.csv', encoding='utf-8')
     df_comparacion = pd.read_csv('Datasets_limpio\\df_comparacion.csv', encoding='utf-8')
 
@@ -161,7 +161,7 @@ def recomendacion_usuario(user_id:str):
 
     recomendaciones = []
     for i, game_id in enumerate(top_5.index):
-        game_name = df_items.loc[df_items['item_id'] == game_id, 'item_name'].values
+        game_name = df_games.loc[df_games['id'] == game_id, 'title'].values
         recomendaciones.append(f"Recomendación {i+1}: {game_name[0]}")
     respuesta = {"Recomendaciones para el usuario": user_id, "recomendaciones": recomendaciones}
     return respuesta
