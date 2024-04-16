@@ -2,6 +2,12 @@ import pandas as pd
 from fastapi import FastAPI
 import pyarrow as pa
 import pyarrow.parquet as pq
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+
 
 
 app = FastAPI()
@@ -118,3 +124,44 @@ def developer_reviews_analysis(developer:str):
     # Devolver conteos en un diccionario
     return {developer2:[f'Negative = {int(false_value)}',f'Positive = {int(true_value)}']}
 
+@app.get('/recomendacion_usuario')
+
+def recomendacion_usuario(user_id:str):
+
+    df_items = pd.read_csv('Datasets_limpio\\user_items.csv', encoding='utf-8')
+    df_ml = pd.read_csv('Datasets_limpio\\df_ml_sa.csv', encoding='utf-8')
+    df_comparacion = pd.read_csv('Datasets_limpio\\df_comparacion.csv', encoding='utf-8')
+
+    n_clusters = 2
+    features = df_ml[['genres','item_id','title','recommend','sentiment_analysis']]
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(features)
+    kmeans = KMeans(n_clusters=n_clusters, random_state=0, n_init=10)
+    kmeans.fit(scaled_features)
+    df_ml['cluster'] = kmeans.labels_
+
+    kmeans.fit(df_ml)
+
+    cluster_labels = kmeans.labels_
+    df_ml['cluster'] = cluster_labels
+ 
+    if user_id not in df_comparacion['user_id_comp'].values:
+        return f"El usuario {user_id} no se encuentra."
+
+    user_id2 = df_comparacion[df_comparacion['user_id_comp'] == user_id]['user_id'].values[0]
+
+    user_cluster = df_ml[df_ml['user_id'] == user_id2]['cluster'].values[0]
+
+    users_mismo_cluster = df_ml[df_ml['cluster'] == user_cluster]
+
+    juegos_recomendados = users_mismo_cluster.groupby('item_id')['recommend'].sum()
+    
+    top_5 = juegos_recomendados.sort_values(ascending=False).head(5)
+    
+
+    recomendaciones = []
+    for i, game_id in enumerate(top_5.index):
+        game_name = df_items.loc[df_items['item_id'] == game_id, 'item_name'].values
+        recomendaciones.append(f"Recomendación {i+1}: {game_name[0]}")
+    respuesta = {"Recomendaciones para el usuario": user_id, "recomendaciones": recomendaciones}
+    return respuesta
