@@ -8,8 +8,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 
 
-
-
 app = FastAPI()
 
 @app.get('/developer')
