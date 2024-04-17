@@ -1,23 +1,30 @@
-Proyecto individual 1 - Henry Desarrollado bajo el rol de MLOps Engineer.
+#         Data-Science-Project-1
 
-Este proyecto consiste en desarrollar un sistema de recomendación de juegos para la plataforma Steams, basado en los datos provistos de años anteriores.
+Proyecto individual 1 - Henry
 
-ETL
-Se suministraron tres archivos JSON comprimidos en GZip: steam_games.json.gz, user_reviews.json.gz y users_item.json.gz Se requirió utilizar funciones para la extracción de los datos. Estos archivos contenian datos anidados, nulos, duplicados y en algunos casos se requirió modificar el formato. Se realizó también la columna 'sentiment_analysis' realizando una funcion con la libreria TextBlob. Luego de desanidar y limpiar los datasets, hice un pequeño analisis de las funciones y los datos que iba a necesitar para cada una. Agrupé columnas y generé nuevos datasets especificos para que cumplan con los requerimientos de cada función. Esto también contribuyó a que los datasets sean más pequeños y se utilicen menos recursos. Los datasets fueron exportados a .csv y quedaron finalmente en uso: -df_usersrecommend.csv -df_playtimegenre.csv -df_ml.csv -df_ml_names.csv
 
-EDA
-En el analisis exploratorio de datos, pude identificar los géneros de los juegos, los juegos recomendados por cada año y un recuento del sentiment_analysis. Pero considero que mi analisis de los datos fue realizando el ETL y seleccionando qué columnas iba a requerir en base a las funciones.
+Este proyecto consiste en crear tu primer modelo de ML que soluciona un problema de negocio: Steam pide que te encargues de crear un sistema de recomendación de videojuegos para usuarios. 
 
-Desarrollo de la API
-Se solicita crear 5 funciones utilizando FASTAPI: def PlayTimeGenre, def UserForGenre, def UsersRecommend, def UsersNotRecommend y def Sentiment_Analysis. El desarrollo de los endpoints se encuentra en el archivo Endpoints.ipynb, en el que fui probando resultados. Luego los pasé al archivo main.py que consumirá la API con los decoradores requeridos.
+## ETL y Engineering
+De los archivos que se encuentran en Datasets, uno (steam_games.json.gz) estaba bien estructurado y los otros dos no, por lo que se usaron funciones para la extraccion de datos distintas.
+Se realizó también la columna 'sentiment_analysis' realizando una funcion con la libreria Nltk
+Se realizo un analisis de los datos, completando faltantes, eliminando nulos, anulando columnas que no sirven para las funciones solicitadas.
 
-Modelo de ML
-Se solicita entrenar un modelo de Machine Learning que nos devuelva un sistema de recomendación de juegos para el usuario: -def recomendacion_usuario Este modelo deriva en un POST de FASTAPI
 
-Deployment
-Se solicita hacer un deploy de las API en Render.
+## EDA
+En el EDA se vio cual la cantidad de juegos por genero, la cantidad de juegos segun año de lanzamiento, hago una comparativa de las recomendaciones segun el sentimiento de los usuarios, calculo la distribucion de horas jugadas por la cantidad de juegos y la cantidad de items comprados por juegos, y finalmente veo cuales son los juegos mas jugados.
 
-Enlaces
-Video: (https://drive.google.com/file/d/123QZAwVmISsUQ6GUmJbZUvQ97jTgm7cl/view?usp=sharing)
-GitHub: (https://github.com/rebbc/PI_ML_OPS_1)
-Deploy: (https://pi-ml-ops-1-vildosola.onrender.com/docs)
+## Desarrollo de la API
+Se solicita crear 5 funciones utilizando FASTAPI: def PlayTimeGenre, def UserForGenre, def UsersRecommend, def UsersNotRecommend y def Sentiment_Analysis.
+
+## Modelo de ML
+Se solicita entrenar un modelo de Machine Learning que nos devuelva un sistema de recomendación de juegos para el usuario:
+-def recomendacion_usuario
+
+## Deployment
+Se solicita hacer un deploy de las API en Render. 
+
+# Enlaces
+- Video: 
+- GitHub: (https://github.com/Alejo260894/Data-Science-Project-1.git)
+- Deploy: (https://data-science-project-1.onrender.com/docs)
