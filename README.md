@@ -25,6 +25,6 @@ Se solicita entrenar un modelo de Machine Learning que nos devuelva un sistema d
 Se solicita hacer un deploy de las API en Render. 
 
 # Enlaces
-- Video: 
+- Video: (https://drive.google.com/file/d/1HKgcLCLG_mrHqCnkdRinTAw5KQr4Ivkh/view?usp=sharing)
 - GitHub: (https://github.com/Alejo260894/Data-Science-Project-1.git)
 - Deploy: (https://data-science-project-1.onrender.com/docs)
